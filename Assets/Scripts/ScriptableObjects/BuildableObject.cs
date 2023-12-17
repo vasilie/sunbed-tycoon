@@ -6,7 +6,8 @@ public enum ObjectState
 {
   None,
   Placed,
-  Placing
+  Placing,
+  Constructing,
 }
 
 public abstract class BuildableObject : ScriptableObject

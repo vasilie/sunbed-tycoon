@@ -18,12 +18,16 @@ public class CustomerStateManager : MonoBehaviour
     public SceneManager sceneManager;
     public ConstructionObject placeToChill;
     public CustomerProperties properties;
-
+    public Inventory inventory;
+    public InventorySlot desiredItem;
+    public Inventory vendorInventory;
     // Start is called before the first frame update
     void Start()
     {
+
         properties = new CustomerProperties(this);
         navMeshAgent = GetComponent<NavMeshAgent>();
+        inventory = GetComponent<InventoryComponent>().inventory;
         currentState = RoamingState;
         sceneManager = SceneManager.Instance;
         destinationA = sceneManager.destinationA;

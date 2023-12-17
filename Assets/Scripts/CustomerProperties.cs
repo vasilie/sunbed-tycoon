@@ -32,17 +32,6 @@ public class CustomerProperties
     stateText = Customer.transform.Find("Billboard/State").GetComponent<TextMeshPro>();
   }
 
-  public void RemoveMoney(int value)
-  {
-    if (currentMoney - value > 0)
-    {
-      currentMoney -= value;
-    }
-    else
-    {
-      Debug.Log("No mani, customer");
-    }
-  }
 
   public void UpdatePropertiesUI()
   {
