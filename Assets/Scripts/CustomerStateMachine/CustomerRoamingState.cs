@@ -11,7 +11,7 @@ public class CustomerRoamingState : CustomerBaseState
         customer.navMeshAgent.enabled = true;
         decisionTimeRemaining = customer.decisionTime;
         currentDestination = customer.destinationA;
-        customer.properties.UpdateCustomerStateUI("Roaming state");
+        customer.properties.UpdateCustomerStateUI("State: Roaming");
     }
 
     public override void UpdateState(CustomerStateManager customer)

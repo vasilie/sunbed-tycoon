@@ -11,7 +11,7 @@ public class CustomerEnjoyingState : CustomerBaseState
         customer.navMeshAgent.enabled = false;
         chillTime = 10f;
         economyManager.AddMoney(20, customer.transform.position);
-        customer.properties.UpdateCustomerStateUI("Enjoying state");
+        customer.properties.UpdateCustomerStateUI("State: Enjoying");
     }
     public override void UpdateState(CustomerStateManager customer)
     {

@@ -4,8 +4,7 @@ public class CustomerMoveToPositionState : CustomerBaseState
 {
   public override void EnterState(CustomerStateManager customer)
   {
-    Debug.Log("MoveToPositionState");
-    customer.properties.UpdateCustomerStateUI("Moving to position state");
+    customer.properties.UpdateCustomerStateUI("State: Move to position");
   }
 
   public override void UpdateState(CustomerStateManager customer)
