@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+public enum GameMode
+{
+  Default,
+  Building,
+}
+
 public class SceneManager : MonoBehaviour
 {
     private static SceneManager instance;
@@ -42,6 +48,7 @@ public class SceneManager : MonoBehaviour
     public Transform destinationB;
     public int id = 0;
     public TextMeshProUGUI textPrefab;
+    // public enum
 
     public ConstructionObject GetUnocupiedConstructionObject()
     {

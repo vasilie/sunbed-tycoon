@@ -40,6 +40,7 @@ public class EconomyManager : MonoBehaviour
 
     // Start is called before the first frame updat
     public int currentMoney;
+    public int population = 0;
     public EconomySO economy;
     public GameObject greenTextPrefab;
     public GameObject redTextPrefab;
@@ -48,6 +49,16 @@ public class EconomyManager : MonoBehaviour
     {
         currentMoney = economy.startingMoney;
     }
+
+    public void AddObjectToPopulation(int value)
+    {
+        population += value;
+    } 
+    
+    public void RemoveFromPopulation(int value)
+    {
+        population += value;
+    }   
 
     public void AddMoney(int value, Vector3 position)
     {

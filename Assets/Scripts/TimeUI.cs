@@ -9,6 +9,7 @@ public class TimeUI : MonoBehaviour
     private EconomyManager economyManager;
     public Text timeText;
     public Text moneyText;
+    public Text population;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,5 +22,6 @@ public class TimeUI : MonoBehaviour
     {
         timeText.text = timeManager.timeInString;
         moneyText.text = "$" + economyManager.currentMoney.ToString();
+        population.text = economyManager.population.ToString();
     }
 }
