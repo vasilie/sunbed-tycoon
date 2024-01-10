@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 0}
   buildingPrice: 100
-  objectState: 1
+  objectState: 0
   decription: 2 sunbeds with umbrella

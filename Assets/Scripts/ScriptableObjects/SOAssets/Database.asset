@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fd344a8729ee95429d0405ca6fc3281, type: 3}
+  m_Name: Database
+  m_EditorClassIdentifier: 
+  objectsData:
+  - <Name>k__BackingField: Sunbed
+    <ID>k__BackingField: 0
+    <Size>k__BackingField: {x: 3, y: 3}
+    <Price>k__BackingField: 100
+    <Prefab>k__BackingField: {fileID: 2793491268804915840, guid: e7332e60a41025d489760a1baca5f8dc, type: 3}
+  - <Name>k__BackingField: Floor
+    <ID>k__BackingField: 1
+    <Size>k__BackingField: {x: 1, y: 1}
+    <Price>k__BackingField: 10
+    <Prefab>k__BackingField: {fileID: 8313054126067304984, guid: 309b62bb7df87e84a929e3dc14f1c807, type: 3}
