@@ -2,15 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum ObjectState
+{
+  None,
+  Placed,
+  Placing,
+  Constructing,
+}
+
 public class ConstructionObject : MonoBehaviour
 {
-    public BuildableObject buildableObject;
     public GameObject selectionObject;
     public GameObject displayObject;
     public GameObject placingDisplayObject;
     public GameObject constructionObject;
     private EconomyManager economyManager;
     private SceneManager sceneManager;
+    private ObjectState state;
 
     public bool isHovered = false;
     public bool isPlaced = false;
@@ -20,52 +28,41 @@ public class ConstructionObject : MonoBehaviour
     public float buildTime = 10f;
     public int id;
 
-    public void Start()
-    {
-        selectionObject = transform.Find("SelectionObject").gameObject;
-        displayObject = transform.Find("DisplayObject").gameObject;
-        placingDisplayObject = transform.Find("PlacingDisplayObject").gameObject;
-        constructionObject = transform.Find("ConstructionObject").gameObject;
-        economyManager = EconomyManager.Instance;
-        sceneManager = SceneManager.Instance;
-        id = sceneManager.GetUniqueId();
-    }
 
-    public void Hover()
-    {
-        if (!isHovered)
-        {
-            buildableObject.objectState = ObjectState.Placing;
-            Debug.Log("HOVERERERD");
-            isHovered = true;
-            UpdateDisplay();
-        }
-    }
+   
 
-    public void UnHover()
-    {
-        if (isHovered && buildableObject.objectState != ObjectState.Placed)
-        {
-            buildableObject.objectState = ObjectState.None;
-            isHovered = false;
-            UpdateDisplay();
-        }
-    }
+    // public void Hover()
+    // {
+    //     if (!isHovered)
+    //     {
+    //         state = ObjectState.Placing;
+    //         Debug.Log("HOVERERERD");
+    //         isHovered = true;
+    //         UpdateDisplay();
+    //     }
+    // }
+
+    // public void UnHover()
+    // {
+    //     if (isHovered && state != ObjectState.Placed)
+    //     {
+    //         state = ObjectState.None;
+    //         isHovered = false;
+    //         UpdateDisplay();
+    //     }
+    // }
 
     public void Place()
     {
-        if (economyManager.currentMoney - buildableObject.buildingPrice >= 0)
-        {
-            if (buildableObject.objectState != ObjectState.Placed)
-            {
-                buildableObject.objectState = ObjectState.Constructing;
-                economyManager.RemoveMoney(buildableObject.buildingPrice, transform.position);
-                isPlaced = true;
-                StartConstructing();
-                UpdateDisplay();
-            }
-        }
+        Debug.Log("PLACED MATORE>?");
 
+        if (state != ObjectState.Placed)
+        {
+            state = ObjectState.Constructing;
+            // economyManager.RemoveMoney(buildableObject.buildingPrice, transform.position);
+            StartConstructing();
+            UpdateDisplay();
+        }
     }
 
     public void StartConstructing()
@@ -75,14 +72,15 @@ public class ConstructionObject : MonoBehaviour
 
     public void UpdateDisplay()
     {
-        if (buildableObject.objectState == ObjectState.Placed)
+        Debug.Log("UPDATE DISPLAY");
+        if (state == ObjectState.Placed)
         {
             displayObject.SetActive(true);
             selectionObject.SetActive(false);
             placingDisplayObject.SetActive(false);
             constructionObject.SetActive(false);
         }
-        if (buildableObject.objectState == ObjectState.Placing)
+        if (state == ObjectState.Placing)
         {
             if (!isConstructed && !isBeingConstructed){
                 displayObject.SetActive(false);
@@ -93,14 +91,14 @@ public class ConstructionObject : MonoBehaviour
             }
             
         }
-        if (buildableObject.objectState == ObjectState.Constructing)
+        if (state == ObjectState.Constructing)
         {
             displayObject.SetActive(false);
             selectionObject.SetActive(true);
             placingDisplayObject.SetActive(false);
             constructionObject.SetActive(true);
         }        
-        if (buildableObject.objectState == ObjectState.None)
+        if (state == ObjectState.None)
         {
             selectionObject.SetActive(true);
             placingDisplayObject.SetActive(false);
@@ -109,9 +107,8 @@ public class ConstructionObject : MonoBehaviour
 
     public void Update()
     {
-        
         Debug.Log(buildTime);
-        Debug.Log(buildableObject.objectState);
+        Debug.Log($"BRATEEE {state}");
         if (isBeingConstructed && buildTime > 0)
         {
             buildTime -= 10 * Time.deltaTime;
@@ -120,11 +117,24 @@ public class ConstructionObject : MonoBehaviour
         if (buildTime <= 0) {
             if (!isConstructed){
                 sceneManager.constructionObjectList.Add(this);
-                buildableObject.objectState = ObjectState.Placed;
+                state = ObjectState.Placed;
                 isConstructed = true;
                 UpdateDisplay();
             }
             
         }
     }
+    public void Start() {
+        Debug.Log("Start os mpt wprlomg");
+        // selectionObject = transform.Find("SelectionObject").gameObject;
+        // displayObject = transform.Find("DisplayObject").gameObject;
+        // placingDisplayObject = transform.Find("PlacingDisplayObject").gameObject;
+        // constructionObject = transform.Find("ConstructionObject").gameObject;
+        economyManager = EconomyManager.Instance;
+        sceneManager = SceneManager.Instance;
+        isBeingConstructed = true;
+        state = ObjectState.Constructing;
+        UpdateDisplay();
+    }
 }
+

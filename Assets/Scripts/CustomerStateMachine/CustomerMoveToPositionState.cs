@@ -9,7 +9,7 @@ public class CustomerMoveToPositionState : CustomerBaseState
 
   public override void UpdateState(CustomerStateManager customer)
   {
-    customer.navMeshAgent.destination = customer.placeToChill.transform.parent.position;
+    customer.navMeshAgent.destination = customer.placeToChill.transform.position;
   }
 
   public override void OnCollisionEnter(CustomerStateManager customer, Collision collision)
@@ -19,7 +19,7 @@ public class CustomerMoveToPositionState : CustomerBaseState
 
   public override void OnTriggerEnter(CustomerStateManager customer, Collider collider)
   {
-    if (collider.gameObject.tag == "PlaceToOccupy" && collider.gameObject.transform.position == customer.placeToChill.transform.parent.position)
+    if (collider.gameObject.tag == "PlaceToOccupy" && collider.gameObject.transform.position == customer.placeToChill.transform.position)
     {
       customer.SwitchState(customer.EnjoyingState);
     }
