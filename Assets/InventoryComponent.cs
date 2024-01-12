@@ -22,8 +22,8 @@ public class InventoryComponent : MonoBehaviour
     {
         for (int i = 0; i < inventory.inventorySlots.Count; i++)
         {
-            Debug.Log(inventory.inventorySlots[i].item.name);
-            Debug.Log(inventory.inventorySlots[i].count);
+            // Debug.Log(inventory.inventorySlots[i].item.name);
+            // Debug.Log(inventory.inventorySlots[i].count);
         }
     }
 

@@ -42,7 +42,6 @@ public class CustomerRoamingState : CustomerBaseState
         if (collider.gameObject.tag == "Destination" && currentDestination.position == collider.gameObject.transform.position)
         {
             ToggleDestination(customer);
-            Debug.Log("Changed destination");
         }
     }
 

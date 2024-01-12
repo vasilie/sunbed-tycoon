@@ -72,7 +72,7 @@ public class ConstructionObject : MonoBehaviour
 
     public void UpdateDisplay()
     {
-        Debug.Log("UPDATE DISPLAY");
+        // Debug.Log("UPDATE DISPLAY");
         if (state == ObjectState.Placed)
         {
             displayObject.SetActive(true);
@@ -107,8 +107,6 @@ public class ConstructionObject : MonoBehaviour
 
     public void Update()
     {
-        Debug.Log(buildTime);
-        Debug.Log($"BRATEEE {state}");
         if (isBeingConstructed && buildTime > 0)
         {
             buildTime -= 10 * Time.deltaTime;

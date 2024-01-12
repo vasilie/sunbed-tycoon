@@ -7,7 +7,7 @@ public class CustomerEnjoyingState : CustomerBaseState
     public override void EnterState(CustomerStateManager customer)
     {
         economyManager = EconomyManager.Instance;
-        customer.transform.position = customer.placeToChill.transform.parent.position;
+        customer.transform.position = customer.placeToChill.transform.position + new Vector3(3f, 3f, 3f);
         customer.navMeshAgent.enabled = false;
         chillTime = 10f;
         economyManager.AddMoney(20, customer.transform.position);
