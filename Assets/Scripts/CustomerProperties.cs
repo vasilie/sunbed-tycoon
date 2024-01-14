@@ -21,8 +21,8 @@ public class CustomerProperties
   public TextMeshPro hungryText;
   public TextMeshPro thirstyText;
   public TextMeshPro stateText;
-  public float thirstRate = 2.6f;
-  public float hungerRate = 1.6f;
+  public float thirstRate = 6.6f;
+  public float hungerRate = 5.6f;
 
   public CustomerProperties(CustomerStateManager customer)
   {

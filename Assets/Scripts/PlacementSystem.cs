@@ -78,6 +78,7 @@ public class PlacementSystem : MonoBehaviour
         if (buildingsUIPanel.activeSelf)
         {
             buildingsUIPanel.SetActive(false);
+            StopPlacement();
         }
         else
         {
