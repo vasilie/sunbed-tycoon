@@ -3,35 +3,51 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+public enum Desire {
+    OccupySunbed,
+    Buy
+}
+
 public class CustomerStateManager : MonoBehaviour
 {
-    CustomerBaseState currentState;
+    public CustomerBaseState currentState;
+    public CustomerBaseState previousState;
     public CustomerRoamingState RoamingState = new CustomerRoamingState();
     public CustomerDecidingState DecidingState = new CustomerDecidingState();
     public CustomerEnjoyingState EnjoyingState = new CustomerEnjoyingState();
+    public CustomerTradingState TradingState = new CustomerTradingState();
+    public CustomerOccupyPlaceState OccupyPlace = new CustomerOccupyPlaceState();
     public CustomerMoveToPositionState MoveToPositionState = new CustomerMoveToPositionState();
     public NavMeshAgent navMeshAgent;
     public Transform destinationA;
     public Transform destinationB;
+    public Transform barPosition;
+    public Transform moveTarget;
+    public Transform previousMoveTarget;
+    public Desire desire;
+    public Desire previousDesire;
+    public InventorySlot desiredItem;
     public CustomerSO customer;
     public float decisionTime;
     public SceneManager sceneManager;
     public ConstructionObject placeToChill;
     public CustomerProperties properties;
-    public Inventory inventory;
-    public InventorySlot desiredItem;
-    public Inventory vendorInventory;
+    public InventoryComponent inventory;
+    
+    public InventoryComponent vendorInventory;
     // Start is called before the first frame update
     void Start()
     {
 
         properties = new CustomerProperties(this);
         navMeshAgent = GetComponent<NavMeshAgent>();
-        inventory = GetComponent<InventoryComponent>().inventory;
+        inventory = GetComponent<InventoryComponent>();
+        vendorInventory = GetComponent<InventoryComponent>();
         currentState = RoamingState;
         sceneManager = SceneManager.Instance;
         destinationA = sceneManager.destinationA;
         destinationB = sceneManager.destinationB;
+        barPosition = sceneManager.barPosition;
         decisionTime = customer.decisionTime;
         currentState.EnterState(this);
     }

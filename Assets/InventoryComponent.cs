@@ -33,12 +33,19 @@ public class InventoryComponent : MonoBehaviour
         {
             currentMoney -= slot.item.price * amount;
             inventory.BuyItem(slot, amount);
+            keyValueList = inventory.inventorySlots;
         }
         else
         {
             Debug.Log("No enough money to buy: " + amount + " x " + slot.item.name);
         }
     }
+
+    public InventorySlot SellItem(InventorySlot slot, int amount = 1)
+    {
+        return inventory.SellItem(slot, amount);
+    }
+
     public void AddMoney(int value)
     {
         currentMoney += value;

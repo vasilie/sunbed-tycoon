@@ -2,15 +2,10 @@ using UnityEngine;
 
 public class CustomerEnjoyingState : CustomerBaseState
 {
-    public EconomyManager economyManager;
     public float chillTime;
     public override void EnterState(CustomerStateManager customer)
     {
-        economyManager = EconomyManager.Instance;
-        customer.transform.position = customer.placeToChill.transform.position + new Vector3(3f, 3f, 3f);
-        customer.navMeshAgent.enabled = false;
         chillTime = 10f;
-        economyManager.AddMoney(20, customer.transform.position);
         customer.properties.UpdateCustomerStateUI("State: Enjoying");
     }
     public override void UpdateState(CustomerStateManager customer)

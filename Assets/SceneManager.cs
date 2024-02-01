@@ -46,6 +46,7 @@ public class SceneManager : MonoBehaviour
     public List<ConstructionObject> constructionObjectList = new List<ConstructionObject>();
     public Transform destinationA;
     public Transform destinationB;
+    public Transform barPosition;
     public int id = 0;
     public TextMeshProUGUI textPrefab;
     // public enum

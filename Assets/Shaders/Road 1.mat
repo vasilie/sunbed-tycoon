@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: TransparentMaterial
-  m_Shader: {fileID: -6465566751694194690, guid: 014bb995b7990f74e928c8e0fd8c6f4e, type: 3}
+  m_Name: Road 1
+  m_Shader: {fileID: -6465566751694194690, guid: 29e4462fb2122af47b98064580f51b52, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -19,6 +19,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - BorderTexture:
+        m_Texture: {fileID: 2800000, guid: 131c509184de84a449d2a48b170185a5, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -32,7 +36,10 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
-    m_Floats: []
+    m_Floats:
+    - BorderOpacityMultiplier: 6.3
+    - BorderWidth: 0.539
+    - Size: 4
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 0.36078432}
+    - _Color: {r: 0.6886792, g: 0.6886792, b: 0.6886792, a: 0.18431373}
   m_BuildTextureStacks: []

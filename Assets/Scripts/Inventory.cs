@@ -29,9 +29,10 @@ public class Inventory
         return slot;
     }
 
-    public void BuyItem(InventorySlot item, int amount)
+    public void BuyItem(InventorySlot slot, int amount)
     {
-        item.count = amount;
-        inventorySlots.Add(item);
+        slot.count = amount;
+        Debug.Log("bought"+slot.item.name);
+        AddItemToInventory(slot);
     }
 }

@@ -672,7 +672,6 @@ GameObject:
   - component: {fileID: 2903373573765549532}
   - component: {fileID: 4745657208270730}
   - component: {fileID: 1995251566}
-  - component: {fileID: 1300484405500609609}
   m_Layer: 0
   m_Name: Customer (1)
   m_TagString: Untagged
@@ -825,28 +824,19 @@ MonoBehaviour:
   navMeshAgent: {fileID: 0}
   destinationA: {fileID: 0}
   destinationB: {fileID: 0}
+  barPosition: {fileID: 0}
+  moveTarget: {fileID: 0}
+  desire: 0
+  desiredItem:
+    count: 1
+    item: {fileID: 11400000, guid: acaa0dd49bdee9d40820d09e3a455655, type: 2}
   customer: {fileID: 11400000, guid: 4e02ea384c9110b4f9a83ba94b837618, type: 2}
   decisionTime: 0
   sceneManager: {fileID: 0}
   placeToChill: {fileID: 0}
-  desiredItem:
-    count: 0
-    item: {fileID: 0}
+  inventory: {fileID: 0}
+  vendorInventory: {fileID: 0}
 --- !u!114 &1995251566
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3550172588466119843}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53c452f15236bf94c87fb16ac9670d17, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  keyValueList: []
-  currentMoney: 10
---- !u!114 &1300484405500609609
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

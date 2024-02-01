@@ -22,6 +22,9 @@ public class ObjectData {
     public Vector2Int Size {get; private set;} = Vector2Int.one;
     
     [field: SerializeField]
+    public int BuildTime {get; private set;}
+
+    [field: SerializeField]
     public int Price {get; private set;}
 
     [field: SerializeField]

@@ -24,6 +24,9 @@ public class CustomerRoamingState : CustomerBaseState
         {
             if (customer.GetPlaceToChill())
             {
+                customer.desire = Desire.OccupySunbed;
+                customer.moveTarget = customer.placeToChill.transform;
+                customer.previousState = this;
                 customer.SwitchState(customer.MoveToPositionState);
             }
             else

@@ -15,14 +15,14 @@ public class CustomerProperties
   public float hungerLevel = 100f;
   public bool isHungry = false;
   public bool isThirsty = false;
-  public float currentlifeTickTime = 10f;
-  public float initialLifeTickTime = 10f;
+  public float currentlifeTickTime = 1f;
+  public float initialLifeTickTime = 1f;
   public CustomerStateManager Customer { get; set; }
   public TextMeshPro hungryText;
   public TextMeshPro thirstyText;
   public TextMeshPro stateText;
-  public float thirstRate = 6.6f;
-  public float hungerRate = 5.6f;
+  public float thirstRate = 2f;
+  public float hungerRate = 2f;
 
   public CustomerProperties(CustomerStateManager customer)
   {
@@ -48,20 +48,41 @@ public class CustomerProperties
   {
     if (currentlifeTickTime <= 0)
     {
-      thirstLevel -= thirstRate;
-      hungerLevel -= hungerRate;
+      if (thirstLevel > 0) {
+        thirstLevel -= thirstRate;
+      }      
+      
+      if (hungerLevel > 0) {
+        hungerLevel -= hungerRate;
+      }
+    
 
       if (thirstLevel <= 10f)
       {
         isThirsty = true;
+      } else {
+        isThirsty = false;
       }
       if (hungerLevel <= 10f)
       {
         isHungry = true;
+      } else {
+        isHungry = false;
       }
       UpdatePropertiesUI();
       currentlifeTickTime = initialLifeTickTime;
 
+    }
+    if (isThirsty == true) {
+      Debug.Log("isThirsty: " + isThirsty);
+      Customer.previousDesire = Customer.desire; 
+      Customer.previousMoveTarget = Customer.moveTarget; 
+      Customer.desire = Desire.Buy;
+      Customer.moveTarget = Customer.barPosition.transform;
+      if (Customer.currentState != Customer.MoveToPositionState) {
+        Customer.previousState = Customer.currentState; 
+      }
+      Customer.SwitchState(Customer.MoveToPositionState);
     }
     currentlifeTickTime -= Time.deltaTime;
   }

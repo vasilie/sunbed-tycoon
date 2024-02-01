@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Destination
   - PlaceToOccupy
+  - Bar
   layers:
   - Default
   - TransparentFX
@@ -13,8 +14,8 @@ TagManager:
   - PlacementLayer
   - Water
   - UI
-  - NoShadow
-  - 
+  - RenderOnTop
+  - Walkable
   - 
   - 
   - 
