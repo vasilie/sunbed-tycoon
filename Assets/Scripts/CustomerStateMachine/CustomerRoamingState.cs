@@ -6,12 +6,17 @@ public class CustomerRoamingState : CustomerBaseState
     public float decisionTimeRemaining;
     public Transform currentDestination;
 
+    public CustomerRoamingState()
+    {
+        stateName = "Roaming";
+    }
+
     public override void EnterState(CustomerStateManager customer)
     {
         customer.navMeshAgent.enabled = true;
         decisionTimeRemaining = customer.decisionTime;
         currentDestination = customer.destinationA;
-        customer.properties.UpdateCustomerStateUI("State: Roaming");
+        Debug.Log(stateName);
     }
 
     public override void UpdateState(CustomerStateManager customer)
@@ -26,7 +31,6 @@ public class CustomerRoamingState : CustomerBaseState
             {
                 customer.desire = Desire.OccupySunbed;
                 customer.moveTarget = customer.placeToChill.transform;
-                customer.previousState = this;
                 customer.SwitchState(customer.MoveToPositionState);
             }
             else

@@ -2,20 +2,33 @@ using UnityEngine;
 
 public class CustomerTradingState : CustomerBaseState
 {
+  public EconomyManager economyManager;
+
+  public CustomerTradingState()
+  {
+    stateName = "Trading";
+  }
+
   public override void EnterState(CustomerStateManager customer)
   {
-    Debug.Log("CustomerTradingState");
-    customer.properties.UpdateCustomerStateUI("Making trade");
-    customer.inventory.BuyItem(customer.vendorInventory.SellItem(customer.desiredItem, 1));
-    customer.properties.Drink(100f);
-    customer.desire = customer.previousDesire;
-    customer.SwitchState(customer.previousState); 
-    customer.moveTarget = customer.previousMoveTarget;
+    economyManager = EconomyManager.Instance;
+    if (!customer.properties.hasBuyed)
+    {
+      customer.inventory.BuyItem(customer.vendorInventory.SellItem(customer.desiredItem, 1));
+      economyManager.AddMoney(customer.desiredItem.item.price, customer.transform.position);
+      customer.properties.hasBuyed = true;
+      customer.properties.Drink(100f);
+      customer.properties.ChangeDesire(customer.previousDesire);
+      customer.moveTarget = customer.previousMoveTarget;
+      customer.SwitchState(customer.previousState);
+    }
+
+
 
   }
   public override void UpdateState(CustomerStateManager customer)
   {
-  
+
   }
   public override void OnCollisionEnter(CustomerStateManager customer, Collision collision)
   {

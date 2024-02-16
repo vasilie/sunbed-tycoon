@@ -1,11 +1,11 @@
 using UnityEngine;
 
-public class CustomerMoveToBarState : CustomerBaseState
+public class CustomerMovegToBarState : CustomerBaseState
 {
+  public string stateName = "MovegToBar State";
   public override void EnterState(CustomerStateManager customer)
   {
     Debug.Log("MoveToBarState");
-    customer.properties.UpdateCustomerStateUI("Moving to Bar");
   }
   public override void UpdateState(CustomerStateManager customer)
   {

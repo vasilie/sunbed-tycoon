@@ -2,11 +2,10 @@ using UnityEngine;
 
 public class CustomerMakeTradeState : CustomerBaseState
 {
+  public string stateName = "MakeTrade State";
   public override void EnterState(CustomerStateManager customer)
   {
     Debug.Log("CustomerMakeTradeState");
-    customer.properties.UpdateCustomerStateUI("Making trade");
-    // customer.vendorInventory.BuyItem(customer.desiredItem);
 
   }
   public override void UpdateState(CustomerStateManager customer)

@@ -11,7 +11,7 @@ public enum Desire {
 public class CustomerStateManager : MonoBehaviour
 {
     public CustomerBaseState currentState;
-    public CustomerBaseState previousState;
+    public CustomerBaseState previousState = null;
     public CustomerRoamingState RoamingState = new CustomerRoamingState();
     public CustomerDecidingState DecidingState = new CustomerDecidingState();
     public CustomerEnjoyingState EnjoyingState = new CustomerEnjoyingState();
@@ -33,7 +33,8 @@ public class CustomerStateManager : MonoBehaviour
     public ConstructionObject placeToChill;
     public CustomerProperties properties;
     public InventoryComponent inventory;
-    
+    public bool hasTicket = false;
+  
     public InventoryComponent vendorInventory;
     // Start is called before the first frame update
     void Start()
@@ -50,6 +51,7 @@ public class CustomerStateManager : MonoBehaviour
         barPosition = sceneManager.barPosition;
         decisionTime = customer.decisionTime;
         currentState.EnterState(this);
+        properties.UpdateCustomerStateUI(this);
     }
 
     // Update is called once per frame
@@ -72,7 +74,11 @@ public class CustomerStateManager : MonoBehaviour
 
     public void SwitchState(CustomerBaseState state)
     {
+        if (currentState != MoveToPositionState) {
+            previousState = currentState;
+        }
         currentState = state;
+        properties.UpdateCustomerStateUI(this);
         state.EnterState(this);
     }
 

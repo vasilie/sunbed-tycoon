@@ -44,6 +44,7 @@ public class EconomyManager : MonoBehaviour
     public EconomySO economy;
     public GameObject greenTextPrefab;
     public GameObject redTextPrefab;
+    public int profit = 0;
 
     void Start()
     {

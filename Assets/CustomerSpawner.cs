@@ -15,6 +15,7 @@ public class CustomerSpawner : MonoBehaviour
     {
         remainingSpawnTime = levelSo.customerSpawnTime;
         economyManager = EconomyManager.Instance;
+        SpawnCustomer();
     }
 
     // Update is called once per frame
@@ -23,9 +24,13 @@ public class CustomerSpawner : MonoBehaviour
         remainingSpawnTime -= Time.deltaTime;
         if (remainingSpawnTime <= 0 && economyManager.population < maxCustomers)
         {
-            Instantiate(customer, transform.position, Quaternion.identity);
-            economyManager.AddObjectToPopulation(1);
-            remainingSpawnTime = levelSo.customerSpawnTime;
+          SpawnCustomer();
         }
+    }
+
+    void SpawnCustomer() {
+        Instantiate(customer, transform.position, Quaternion.identity);
+        economyManager.AddObjectToPopulation(1);
+        remainingSpawnTime = levelSo.customerSpawnTime;
     }
 }

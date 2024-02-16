@@ -11,18 +11,20 @@ public class CustomerProperties
   public CustomerType type = CustomerType.Default;
   public int currentMoney = 10;
   public int satisfactionLevel = 100;
-  public float thirstLevel = 100f;
-  public float hungerLevel = 100f;
+  public float thirstLevel = Random.Range(1f, 100f);
+  public float hungerLevel = Random.Range(1f, 100f);
   public bool isHungry = false;
   public bool isThirsty = false;
-  public float currentlifeTickTime = 1f;
-  public float initialLifeTickTime = 1f;
+  public float currentlifeTickTime = 4f;
+  public float initialLifeTickTime = 4f;
   public CustomerStateManager Customer { get; set; }
   public TextMeshPro hungryText;
   public TextMeshPro thirstyText;
   public TextMeshPro stateText;
-  public float thirstRate = 2f;
-  public float hungerRate = 2f;
+  public TextMeshPro previousStateText;
+  public float thirstRate = 3.2f;
+  public float hungerRate = 2.1f;
+  public bool hasBuyed = false;
 
   public CustomerProperties(CustomerStateManager customer)
   {
@@ -30,6 +32,7 @@ public class CustomerProperties
     hungryText = Customer.transform.Find("Billboard/HungryMeter").GetComponent<TextMeshPro>();
     thirstyText = Customer.transform.Find("Billboard/ThirstyMeter").GetComponent<TextMeshPro>();
     stateText = Customer.transform.Find("Billboard/State").GetComponent<TextMeshPro>();
+    previousStateText = Customer.transform.Find("Billboard/PreviousState").GetComponent<TextMeshPro>();
   }
 
 
@@ -39,9 +42,10 @@ public class CustomerProperties
     thirstyText.text = "Thirst Level: " + thirstLevel;
   }
 
-  public void UpdateCustomerStateUI(string text)
+  public void UpdateCustomerStateUI(CustomerStateManager customer)
   {
-    stateText.text = text;
+    stateText.text = "State: " + customer.currentState.stateName;
+    previousStateText.text = "Last State: " + customer.previousState.stateName;
   }
 
   public void Update()
@@ -74,14 +78,11 @@ public class CustomerProperties
 
     }
     if (isThirsty == true) {
+      hasBuyed = false;
       Debug.Log("isThirsty: " + isThirsty);
-      Customer.previousDesire = Customer.desire; 
       Customer.previousMoveTarget = Customer.moveTarget; 
-      Customer.desire = Desire.Buy;
+      ChangeDesire(Desire.Buy);
       Customer.moveTarget = Customer.barPosition.transform;
-      if (Customer.currentState != Customer.MoveToPositionState) {
-        Customer.previousState = Customer.currentState; 
-      }
       Customer.SwitchState(Customer.MoveToPositionState);
     }
     currentlifeTickTime -= Time.deltaTime;
@@ -96,6 +97,15 @@ public class CustomerProperties
     else
     {
       hungerLevel += value;
+    }
+  }
+
+  public void ChangeDesire(Desire desire) {
+    if (desire != Customer.desire){
+      if (Customer.previousDesire != desire) {
+        Customer.previousDesire = Customer.desire;
+      }
+      Customer.desire = desire;
     }
   }
 

@@ -16,10 +16,12 @@ MonoBehaviour:
   - <Name>k__BackingField: Sunbed
     <ID>k__BackingField: 0
     <Size>k__BackingField: {x: 3, y: 3}
-    <Price>k__BackingField: 100
+    <BuildTime>k__BackingField: 0
+    <Price>k__BackingField: 40
     <Prefab>k__BackingField: {fileID: 2793491268804915840, guid: e7332e60a41025d489760a1baca5f8dc, type: 3}
   - <Name>k__BackingField: Floor
     <ID>k__BackingField: 1
     <Size>k__BackingField: {x: 1, y: 1}
+    <BuildTime>k__BackingField: 0
     <Price>k__BackingField: 10
     <Prefab>k__BackingField: {fileID: 8313054126067304984, guid: 309b62bb7df87e84a929e3dc14f1c807, type: 3}
