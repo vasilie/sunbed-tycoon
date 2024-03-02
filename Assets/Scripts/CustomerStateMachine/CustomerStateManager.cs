@@ -64,7 +64,7 @@ public class CustomerStateManager : MonoBehaviour
     public bool GetPlaceToChill()
     {
         placeToChill = sceneManager.GetUnocupiedConstructionObject();
-        Debug.Log(placeToChill);
+        // Debug.Log(placeToChill);
         if (placeToChill)
         {
             return true;

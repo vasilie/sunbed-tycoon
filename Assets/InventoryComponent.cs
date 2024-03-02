@@ -8,6 +8,8 @@ public class InventoryComponent : MonoBehaviour
     public Inventory inventory;
     public List<InventorySlot> keyValueList = new List<InventorySlot>();
     public int currentMoney = 10;
+    public bool isPlayerInventory = false;
+    public StocksManager stock;
 
     void Start()
     {
@@ -15,6 +17,9 @@ public class InventoryComponent : MonoBehaviour
         for (int i = 0; i < keyValueList.Count; i++)
         {
             inventory.AddItemToInventory(keyValueList[i]);
+        }
+        if (isPlayerInventory) {
+            stock.UpdateUI(inventory.inventorySlots);
         }
     }
 
@@ -32,7 +37,7 @@ public class InventoryComponent : MonoBehaviour
         if (currentMoney - slot.item.price * amount >= 0)
         {
             currentMoney -= slot.item.price * amount;
-            inventory.BuyItem(slot, amount);
+            inventory.AddItem(slot, amount);
             keyValueList = inventory.inventorySlots;
         }
         else
@@ -41,9 +46,16 @@ public class InventoryComponent : MonoBehaviour
         }
     }
 
-    public InventorySlot SellItem(InventorySlot slot, int amount = 1)
+    public void SellItem(InventorySlot slot, int amount = 1)
     {
-        return inventory.SellItem(slot, amount);
+        inventory.RemoveItem(slot, amount);
+        if (isPlayerInventory) {
+            stock.UpdateUI(inventory.inventorySlots);
+        }
+    }
+
+    public bool CheckIfItemCanBeSold(InventorySlot slot) {
+        return inventory.CanItemBeSold(slot.item.name);
     }
 
     public void AddMoney(int value)

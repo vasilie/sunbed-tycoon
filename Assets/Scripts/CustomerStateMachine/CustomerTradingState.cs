@@ -12,9 +12,10 @@ public class CustomerTradingState : CustomerBaseState
   public override void EnterState(CustomerStateManager customer)
   {
     economyManager = EconomyManager.Instance;
-    if (!customer.properties.hasBuyed)
+    if (!customer.properties.hasBuyed && customer.vendorInventory.CheckIfItemCanBeSold(customer.desiredItem))
     {
-      customer.inventory.BuyItem(customer.vendorInventory.SellItem(customer.desiredItem, 1));
+      customer.vendorInventory.SellItem(customer.desiredItem, 1);  
+      customer.inventory.BuyItem(customer.desiredItem, 1);
       economyManager.AddMoney(customer.desiredItem.item.price, customer.transform.position);
       customer.properties.hasBuyed = true;
       customer.properties.Drink(100f);

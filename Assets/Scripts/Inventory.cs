@@ -6,9 +6,9 @@ public class Inventory
 {
     public List<InventorySlot> inventorySlots = new List<InventorySlot>();
 
-    public bool HasItem(string id)
+    public bool CanItemBeSold(string id)
     {
-        return inventorySlots.Exists(slot => slot.item.name == id);
+        return inventorySlots.Exists(slot => slot.item.name == id && slot.count > 0);
     }
 
     public void AddItemToInventory(InventorySlot item)
@@ -16,20 +16,22 @@ public class Inventory
         inventorySlots.Add(item);
     }
 
-    public InventorySlot SellItem(InventorySlot slot, int amount = 1)
+    public void RemoveItem(InventorySlot slot, int amount = 1)
     {
-        if (HasItem(slot.item.name))
+        if (CanItemBeSold(slot.item.name))
         {
             InventorySlot foundItem = inventorySlots.Find(foundSlot => foundSlot.item.name == slot.item.name);
+
+            Debug.Log(foundItem);
+            Debug.Log(foundItem.count);
             if (foundItem.count - amount >= 0)
             {
                 foundItem.count -= amount;
             }
         }
-        return slot;
     }
 
-    public void BuyItem(InventorySlot slot, int amount)
+    public void AddItem(InventorySlot slot, int amount)
     {
         slot.count = amount;
         Debug.Log("bought"+slot.item.name);
